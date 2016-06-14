@@ -1,0 +1,30 @@
+{% extends "base.html" %} 
+
+{% block content %}  
+
+<h1>Articles</h1> 
+
+<table border='true'>
+	<tr>
+		<td>HeadLine</td>
+		<td>PubDate</td>
+		<td>Article</td>
+		<td>Reporter</td>
+		<td>Operation</td>
+	</tr>
+	{% for article in article_list %}
+	<tr>
+		<td>{{article.headline}}</td>
+		<td>{{article.pub_date}}</td>
+		<td>{{article.article}}</td>
+		<td>{{article.reporter.full_name}}</td>
+		<td>
+			<a href='../{{article.id}}/detail'>Detail</a>
+			<a href='../{{article.id}}/update'>Update</a>
+			<a href='../{{article.id}}/delete'>Delete</a>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}  

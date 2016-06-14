@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//src/datahandle/ColumnHandler.py=utf-8
+encoding//src/datahandle/ColumnSpecificHandler.py=utf-8
+encoding//src/datahandle/DBCUtils.py=utf-8
+encoding//src/datahandle/JudgeTableHandler.py=utf-8
+encoding//src/datahandle/PinYinUtils.py=utf-8
+encoding//src/datahandle/UnicodeUtils.py=utf-8
+encoding//src/datamining/IQiYiModel.py=utf-8
+encoding//src/datamining/IQiYiUser.py=utf-8
+encoding//src/datamining/IQiYiVideo.py=utf-8
+encoding//src/datamining/IQiYiVideoComment.py=utf-8
+encoding//src/datamining/IQiYiVideoThread.py=utf-8
+encoding//src/datamining/Loldytt.py=utf-8

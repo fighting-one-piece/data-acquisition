@@ -1,0 +1,29 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<h1>Articles</h1> 
+
+<table border='true'>
+	<tr>
+		<td>Title</td>
+		<td>Content</td>
+		<td>Pub_Time</td>
+		<td>Author</td>
+		<td>Operation</td>
+	</tr>
+	{% for article in article_list %}
+	<tr>
+		<td>{{article.title}}</td>
+		<td>{{article.content}}</td>
+		<td>{{article.pub_time}}</td>
+		<td>{{article.author.name}}</td>
+		<td>
+			<a href='../blog/{{article.id}}'>Detail</a>
+			<a href='../blog/{{article.id}}/d'>Delete</a>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endblock %} 

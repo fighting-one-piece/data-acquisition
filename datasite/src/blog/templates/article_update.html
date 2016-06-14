@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+
+{% block content %} 
+<h1>Article</h1> 
+
+<form action="/blog/{{article.id}}/u" method="post">
+	<table border='true'>
+		<tr>
+			<td>id</td>
+			<td>
+				<input name="id" type="text" value="{{article.id}}"/>
+			</td>
+		</tr>
+		<tr>
+			<td>title</td>
+			<td>
+				<input name="title" type="text" value="{{article.title}}"/>
+			</td>
+		</tr>
+		<tr>
+			<td>content</td>
+			<td>
+				<input name="content" type="text" value="{{article.content}}"/>
+			</td>
+		</tr>
+		<tr>
+			<td>author</td>
+			<td>
+				<input name="author" type="text" value="{{article.author.name}}"/>
+				<input name="authorId" type="hidden" value="{{article.author.id}}"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<input type="submit" value="¸üÐÂ"/>
+			</td>
+		</tr>
+	</table>
+</form>
+
+{% endblock %}
