@@ -1,0 +1,84 @@
+		sb.append(orderId).append(SPLIT);
+		sb.append(tbExpressId).append(SPLIT);
+		sb.append(expressId).append(SPLIT);
+		sb.append(expressName).append(SPLIT);
+		sb.append(begainTime).append(SPLIT);
+		sb.append(linkName).append(SPLIT);
+		sb.append(linkSex).append(SPLIT);
+		sb.append(linkPhone).append(SPLIT);
+		sb.append(linkCall).append(SPLIT);
+		sb.append(linkIdCard).append(SPLIT);
+		sb.append(linkEmail).append(SPLIT);
+		sb.append(linkAddress).append(SPLIT);
+		sb.append(linkZipCode).append(SPLIT);
+		sb.append(sendCompany).append(SPLIT);
+		sb.append(name).append(SPLIT);
+		sb.append(nickname).append(SPLIT);
+		sb.append(sex).append(SPLIT);
+		sb.append(phone).append(SPLIT);
+		sb.append(rcall).append(SPLIT);
+		sb.append(province).append(SPLIT);
+		sb.append(city).append(SPLIT);
+		sb.append(county).append(SPLIT);
+		sb.append(address).append(SPLIT);
+		sb.append(zipCode).append(SPLIT);
+		sb.append(idCard).append(SPLIT);
+		sb.append(email).append(SPLIT);
+		sb.append(bankCard).append(SPLIT);
+		sb.append(idCode).append(SPLIT);
+		sb.append(networkCode).append(SPLIT);
+		sb.append(endTime).append(SPLIT);
+		sb.append(receiver).append(SPLIT);
+		sb.append(price).append(SPLIT);
+		sb.append(good).append(SPLIT);
+		sb.append(goodModel).append(SPLIT);
+		sb.append(goodNumber).append(SPLIT);
+		sb.append(expressContent).append(SPLIT);
+		sb.append(orderDate).append(SPLIT);
+		sb.append(orderTime).append(SPLIT);
+		sb.append(sourceFile).append(SPLIT);
+		sb.append(insertTime).append(SPLIT);
+		sb.append(updateTime).append(SPLIT);
+
+	/** 会员编号*/
+	/** 订单编号*/
+	/** 淘宝物流Id */
+	/** 物流Id */
+	/** 快递公司名称 */
+	/** 寄件时间 */
+	/** 寄件人 */
+	/** 寄件人性别 */
+	/** 寄件人电话 */
+	/** 寄件人座机 */
+	/** 寄件人身份证 */
+	/** 寄件人邮箱 */
+	/** 寄件人地址 */
+	/** 寄件人邮编 */
+	/** 寄件公司 */
+	/** 收件人 */
+	/** 收件人昵称 */
+	/** 收件人性别 */
+	/** 收件人电话 */
+	/** 收件人座机 */
+	/** 收件人省 */
+	/** 收件人市 */
+	/** 收件人县 */
+	/** 收件人地址 */
+	/** 收件人邮编 */
+	/** 收件人身份证 */
+	/** 收件人邮箱 */
+	/** 收件人银行卡 */
+	/** 收件人编码 */
+	/** 收件网点编码 */
+	/** 收件时间  */
+	/** 收件员 */
+	/** 货物价格 */
+	/** 货物名称 */
+	/** 货物型号 */
+	/** 货物数量 */
+	/** 快递内容 */
+	/** 下单日期 */
+	/** 下单时间 */
+	/** 数据来源文件 */
+	/** 数据写入时间 */
+	/** 数据更新时间 */

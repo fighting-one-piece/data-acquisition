@@ -44,10 +44,11 @@ if __name__ == '__main__' :
     copyWindowsToLinux('192.168.0.114', 'ym', 'youmeng@123', src, dest)
     copyWindowsToLinux('192.168.0.108', 'ym', 'youmeng@#123', src, dest)
     print 'copy local jar package to linux finish !!!'
-    os.system('git status')
-    os.system('git add .')
-    os.system('git commit -m \' financial logistics model modify commit\'')
-    os.system('git push origin master')
+    git_command = 'git status & \
+                   git add . & \
+                   git commit -m \' financial logistics model modify commit\' & \
+                   git push origin master &'
+    os.system(git_command)
     
     
 
