@@ -35,17 +35,21 @@ if __name__ == '__main__':
     workbook = xlsxwriter.Workbook(xlsxPath)
     
     BUFSIZE = 1024
+    EXCEL_ROWS = 1040000
+    EXCEL_COLS = 16384
+    FIELD_SEPARATOR = ','
     with open(path, 'r') as f:
         nrows, total_rows, sheet_num = 0, 0, 0
         lines = f.readlines(BUFSIZE)
         while lines:
             for line in lines:
-                if (total_rows % 1000000 == 0) :
+                if (total_rows % EXCEL_ROWS == 0) :
                     worksheet = workbook.add_worksheet(name = 'sheet' + str(sheet_num))
                     nrows = 0
                     sheet_num = sheet_num + 1
-                values = line.split(',')
-                for ncol in xrange(len(values)):
+                values = line.split(FIELD_SEPARATOR)
+                cols_num = EXCEL_COLS if len(values) > EXCEL_COLS else len(values)
+                for ncol in xrange(cols_num):
                     #print '%s %s %s' %(nrows, ncol, values[ncol])
                     worksheet.write(nrows, ncol, values[ncol])  
                 nrows = nrows + 1

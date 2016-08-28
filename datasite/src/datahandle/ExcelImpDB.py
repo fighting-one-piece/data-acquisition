@@ -4,17 +4,18 @@
 '''
 
 import os
+import re
 import sys
 import xlrd
 import time
 import datetime
-#import pandas as pd
 import MySQLdb as mysql
 
 
-DBNAME="test"
-HOST="192.168.0.114"
-PASSWORD="123"
+DBNAME = "data"
+HOST = "192.168.0.114"
+USER = "root"
+PASSWORD = "123"
 
 default_encoding = 'utf-8'
 if sys.getdefaultencoding() != default_encoding:
@@ -22,8 +23,8 @@ if sys.getdefaultencoding() != default_encoding:
     reload(sys)
     #sys.setdefaultencoding(default_encoding)
     
-def createDB(cur,db,dbname):
-    sql="CREATE DATABASE IF NOT EXISTS "+dbname+" DEFAULT CHARSET utf8"
+def createDB(cur, db, dbname):
+    sql = "CREATE DATABASE IF NOT EXISTS "+dbname+" DEFAULT CHARSET utf8"
     cur.execute(sql)
     db.commit()
     print "===========DBNAME:%s========="%dbname
@@ -34,13 +35,13 @@ def createTable(cur,db,dbname,tbname,bCreate):
     try:
         dbname = str(dbname).replace('-','').replace('(','').replace(')','')
         tbname = str(tbname).replace('-','').replace('(','').replace(')','')
-        sql="CREATE DATABASE IF NOT EXISTS "+dbname+" DEFAULT CHARSET utf8"
+        sql = "CREATE DATABASE IF NOT EXISTS "+dbname+" DEFAULT CHARSET utf8"
         cur.execute(sql)
         db.commit()
         sql="USE "+dbname
         cur.execute(sql)
         db.commit()
-        sql="""CREATE TABLE IF NOT EXISTS %s(c1 varchar(40),c2 varchar(40),c3 varchar(40),
+        sql = """CREATE TABLE IF NOT EXISTS %s(c1 varchar(40),c2 varchar(40),c3 varchar(40),
         c4 varchar(40),c5 varchar(40),c6 varchar(40),
         c7 varchar(40),c8 varchar(40),c9 varchar(40),
         c10 varchar(40),c11 varchar(40),c12 varchar(40),
@@ -48,7 +49,6 @@ def createTable(cur,db,dbname,tbname,bCreate):
          c16 varchar(40),c17 varchar(40),c18 varchar(40),
         c19 varchar(40),c20 varchar(40),
         sourceFile varchar(200),updateTime varchar(40) );"""%tbname
-        # print "create tb=>%s"%sql
         cur.execute(sql)
         db.commit()
     except BaseException as e:
@@ -64,7 +64,7 @@ sqlBack = '(\'{0}\',\'{1}\',\'{2}\',\'{3}\',\'{4}\',\'{5}\',\'{6}\',\'{7}\',\'{8
             \'{11}\',\'{12}\',\'{13}\',\'{14}\',\'{15}\',\'{16}\',\'{17}\',\'{18}\',\'{19}\',\'{20}\',\'{21}\')'
 
     
-def writetoDB(cur,db,dbname,tbname,sourceFile,updateTime,argsList):
+def writetoDB(cur, db, dbname, tbname, sourceFile, updateTime, argsList):
     tbname = str(tbname).replace('-','').replace('(','').replace(')','')
     sql = sqlFront.format(tbname)
     values = []
@@ -85,9 +85,9 @@ def writetoDB(cur,db,dbname,tbname,sourceFile,updateTime,argsList):
 if __name__=='__main__':  
     startTime = datetime.datetime.now()
     
-    conn=mysql.connect(host=HOST,user="root",passwd=PASSWORD)
+    conn = mysql.connect(host = HOST, user = USER, passwd = PASSWORD)
     conn.set_character_set('utf8')
-    cur=conn.cursor()
+    cur = conn.cursor()
 
     #if len(sys.argv)!=2:
     #    print "Usage:cmd file.xls(x)"
@@ -98,27 +98,60 @@ if __name__=='__main__':
     #if not os.path.exists(path):
     #    print "====ERROR:%s can not find"%path
     #    sys.exit(1)
-    path = "F://t.xlsx"
+    path = u"F://2008年10月北京市阀门配件产品生产销售企业名录数据库(二次开发).xls"
+    #path = u"F://2008年10月北京市阀门配件产品生产销售企业名录数据库(二).xls"
         
-    basename=os.path.basename(path).split('.')[0]
-    sourceFile=os.path.basename(path)
+    basenames = os.path.basename(path).split('.')
+    if len(basenames) == 2 :
+        basename = basenames[0]
+    else :
+        basename = ''.join(basenames[0:len(basenames) - 1])
+    #basename = os.path.basename(path).split('.')[0]
+    sourceFile = os.path.basename(path)
 
-    mtime=os.stat(path).st_mtime
-    stTime=time.localtime(int(mtime))
-    updateTime=time.strftime('%Y-%m-%d %H:%M:%S',stTime)
+    mtime = os.stat(path).st_mtime
+    stTime = time.localtime(int(mtime))
+    updateTime = time.strftime('%Y-%m-%d %H:%M:%S',stTime)
 
-    now=time.time()
+    now = time.time()
 
-    dbname=DBNAME+time.strftime('%Y%m%d',time.localtime(now))
-    createDB(cur,conn,dbname)
+    dbname = DBNAME + time.strftime('%Y%m%d',time.localtime(now))
+    createDB(cur, conn, dbname)
     
     workbook = xlrd.open_workbook(path)
     for sheet in workbook.sheets() :
         print "==========sheetname:%s========" %(sheet.name)
        
-        bCreate=True
-        sheetName=str(sheet.name).replace('.','');
-        tbname="tb"+basename+"_"+sheetName
+        bCreate = True
+        sheetName = str(sheet.name).replace('.','').replace(' ', '')
+        tbname = "tb" + basename + "_" + sheetName
+        tbname = str(tbname).replace(' ', '').replace('-', '').replace('(', '').replace(')', '').replace('、','')
+        
+        tbname_len = len(tbname.decode('utf-8'))
+        if tbname_len >= 54 :
+            tbname = tbname.decode('utf-8')[tbname_len - 54 : tbname_len].encode('utf-8')
+            tbname = "tb" + tbname
+            print tbname
+        '''
+        if len(tbname) >= 120 :
+            tmp_tbname = []
+            for i in xrange(len(tbname)):
+                print tbname[i]
+                tmp_tbname.append(tbname[i])
+            tmp_tbname.reverse()  
+            print  ''.join(tmp_tbname)
+            total_len = 0
+            new_tbname = []
+            for tmp_name in tmp_tbname :
+                if re.compile(u"[\u4e00-\u9fa5]").match(tmp_name) :
+                    total_len = total_len + 3
+                else :
+                    total_len = total_len + 1
+                if total_len > 130 : break
+                new_tbname.append(tmp_name)
+            tbname = "tb" + ''.join(new_tbname)
+        '''    
+        
         row = 0
         colsList = []
         
@@ -127,9 +160,9 @@ if __name__=='__main__':
         print 'rows : %s -- cols : %s' %(nrows, ncols)
         for r in range(nrows) :
             createTable(cur,conn,dbname,tbname,bCreate)
-            bCreate=False
-            cols=[""]*20
-            i=0
+            bCreate = False
+            cols = [""]*20
+            i = 0
             for c in range(ncols) :
                 if i >= 20:
                     break
@@ -155,7 +188,7 @@ if __name__=='__main__':
             colsList.append(cols)
             row = row + 1
             if (row % 100 == 0) or (row == nrows) :
-                writetoDB(cur,conn,dbname,tbname,sourceFile,updateTime,colsList)
+                writetoDB(cur, conn, dbname, tbname, sourceFile, updateTime, colsList)
                 colsList = []
     cur.close()  
     conn.close() 

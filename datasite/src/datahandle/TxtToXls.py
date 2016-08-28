@@ -30,29 +30,31 @@ if __name__=='__main__':
         print "ERROR: %s can not find" %path
         sys.exit(1)
         
-    xlsxPath = os.path.join(os.path.dirname(path), 
+    xlsPath = os.path.join(os.path.dirname(path), 
         os.path.splitext(os.path.basename(path))[0] + '.xls')
         
     workbook = xlwt.Workbook(encoding='utf-8')  
     
     BUFSIZE = 1024
+    EXCEL_ROWS = 65535
+    EXCEL_COLS = 256
+    FIELD_SEPARATOR = ','
     with open(path, 'r') as f:
         nrows, total_rows = 0, 0
         lines = f.readlines(BUFSIZE)
         while lines:
             for line in lines:
-                if (nrows % 20000 == 0) :
+                if (nrows % EXCEL_ROWS == 0) :
                     wsheet = workbook.add_sheet('sheet' + str(total_rows), cell_overwrite_ok = True)
                     nrows = 0
-                values = line.split(',')
-                for ncol in xrange(len(values)):
-                    print '%s %s %s' %(nrows, ncol, values[ncol])
+                values = line.split(FIELD_SEPARATOR)
+                cols_num = EXCEL_COLS if len(values) > EXCEL_COLS else len(values)
+                for ncol in xrange(cols_num):
+                    #print '%s %s %s' %(nrows, ncol, values[ncol])
                     wsheet.write(nrows, ncol, values[ncol])  
                 nrows = nrows + 1
                 total_rows = total_rows + 1
             lines = f.readlines(BUFSIZE)
-    
-    
     
     #with codecs.open(path, 'r', 'utf-8') as text:
     #with open(path, 'r') as text:
@@ -68,7 +70,7 @@ if __name__=='__main__':
     #        nrows = nrows + 1
     #        total_rows = total_rows + 1
             
-    workbook.save(xlsxPath)  
+    workbook.save(xlsPath)  
     endTime = datetime.datetime.now()
     print "import database success ! spend time %s seconds" %((endTime - startTime).seconds)
            
