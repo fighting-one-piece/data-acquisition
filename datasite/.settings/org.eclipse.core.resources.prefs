@@ -3,6 +3,7 @@ encoding//src/datahandle/AutoPackage.py=utf-8
 encoding//src/datahandle/ColumnHandler.py=utf-8
 encoding//src/datahandle/ColumnSpecificHandler.py=utf-8
 encoding//src/datahandle/DBCUtils.py=utf-8
+encoding//src/datahandle/DuplicateFileHandle.py=utf-8
 encoding//src/datahandle/ExcelHandle.py=utf-8
 encoding//src/datahandle/ExcelImpDB.py=utf-8
 encoding//src/datahandle/ExcelReader.py=utf-8
