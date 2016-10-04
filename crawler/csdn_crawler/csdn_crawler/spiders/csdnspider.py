@@ -50,7 +50,7 @@ class CSDNSpider(scrapy.Spider):
         print _eventId
         return [scrapy.FormRequest.from_response(response,
                          formdata={
-                             'username': '125906088%40qq.com',
+                             'username': '125906088@qq.com',
                              'password': '@wulin5201314',
                              'rememberMe': True,
                              'lt': lt,
