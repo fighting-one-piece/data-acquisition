@@ -60,7 +60,7 @@ DOWNLOADER_MIDDLEWARES = {
    'mobile_crawler.middlewares.UserAgentMiddleware': 1,
    'mobile_crawler.middlewares.ProxyMiddleware': 80,
    'mobile_crawler.middlewares.SeleniumProxyMiddleware': 100,
-   'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 120,
+   'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 120,
 }
 
 # Enable or disable extensions

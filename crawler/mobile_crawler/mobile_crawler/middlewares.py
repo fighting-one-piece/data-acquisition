@@ -4,8 +4,11 @@ import os
 import sys
 import json
 import redis
+import random
+import base64
 import requests
 import platform
+from settings import PROXIES
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from settings import REDIS_HOST, REDIS_PORT
@@ -15,10 +18,6 @@ if sys.getdefaultencoding() != default_encoding:
     print sys.getdefaultencoding()
     reload(sys)
     sys.setdefaultencoding(default_encoding)
-
-import random
-import base64
-from settings import PROXIES
 
 class UserAgentMiddleware(object):
     """Randomly rotate user agents based on a list of predefined ones"""
@@ -123,7 +122,6 @@ def selenium_crawl_goubanjia_proxy_id():
         proxy['ip_port'] = ips[i] + ':' + ports[i]
         proxy['user_pass'] = ''
         proxies.append(proxy)
-    print proxies
 
     browser.close()
     browser.quit()
@@ -151,15 +149,17 @@ def selenium_crawl_xicidaili_proxy_ip():
         service_args = ['--verbose']
         browser = webdriver.Chrome(chrome_driver, service_args=service_args, service_log_path=service_log_path)
 
-    browser.get("http://www.xicidaili.com/nt/")
-    tr_elements = browser.find_elements_by_css_selector('tr.odd')
     proxies = []
-    for tr_element in tr_elements:
-        datas = str(tr_element.text).split(' ')
-        proxy = {}
-        proxy['ip_port'] = datas[0] + ':' + datas[1]
-        proxy['user_pass'] = ''
-        proxies.append(proxy)
+    for i in xrange(10):
+        target_url = "http://www.xicidaili.com/nt/" + str(i)
+        browser.get(target_url)
+        tr_elements = browser.find_elements_by_css_selector('tr.odd')
+        for tr_element in tr_elements:
+            datas = str(tr_element.text).split(' ')
+            proxy = {}
+            proxy['ip_port'] = datas[0] + ':' + datas[1]
+            proxy['user_pass'] = ''
+            proxies.append(proxy)
 
     browser.close()
     browser.quit()
@@ -186,7 +186,6 @@ def crawl_proxy360_proxy_ip():
                 proxy['user_pass'] = ''
                 proxies.append(proxy)
                 ip_port = ''
-    print proxies
     return proxies
 
 
@@ -198,3 +197,4 @@ if __name__ == '__main__':
     elif current_operation_system == 'Linux':
         driver_file_path = os.path.join(parent_dir, 'driver', 'chromedriver')
     print driver_file_path
+    selenium_crawl_xicidaili_proxy_ip()
