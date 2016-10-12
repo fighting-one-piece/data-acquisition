@@ -26,8 +26,68 @@ class MobileSpider(RedisCrawlSpider):
     allowed_domains = ["imcaller.com"]
     redis_key = 'mobile_spider:imcaller'
 
+    def __init__(self, mobile_number=None):
+        self.mobile_number = mobile_number
+
+    def start_requests(self):
+        print 'start_requests'
+        if self.mobile_number:
+            request = scrapy.Request(
+                url=crypt.get_posturl(),
+                method='POST',
+                body=crypt.get_poststr(self.mobile_number),
+                headers={
+                    'X-CLIENT-PFM': '20',
+                    'X-CLIENT-VCODE': '81',
+                    'X-CLIENT-PID': '8888888',
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 5.0.2; Redmi Note 2 MIUI/V7.5.5.0.LHMCNDE',
+                    'Accept-Encoding': 'gzip',
+                }
+            )
+            request.meta['mobile'] = self.mobile_number
+            request.meta['msk'] = crypt.sk
+            request.meta['mtk'] = crypt.tk
+            request.meta['muid'] = crypt.uid
+            yield request
+        else:
+            parent_dir = os.path.dirname(__file__)  # 获取当前文件夹的绝对路径
+            file_path = os.path.join(parent_dir, 'mobilecode.txt')
+            mobile_number_segments = []
+            with open(file_path, 'r') as f:
+                line = f.readline()
+                while line:
+                    mobile_number_segments.append(line.strip())
+                    line = f.readline()
+
+            for mobile_number_segments_index in xrange(len(mobile_number_segments)):
+                mobile_number_segment = random.choice(mobile_number_segments)
+                print 'fetching mobile code : ' + mobile_number_segment
+                seed = int(mobile_number_segment) * 10000
+                for i in xrange(10000):
+                    mobile_number = seed + i
+                    request = scrapy.Request(
+                        url=crypt.get_posturl(),
+                        method='POST',
+                        body=crypt.get_poststr(str(mobile_number)),
+                        headers={
+                            'X-CLIENT-PFM': '20',
+                            'X-CLIENT-VCODE': '81',
+                            'X-CLIENT-PID': '8888888',
+                            'Content-Type': 'application/json; charset=utf-8',
+                            'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 5.0.2; Redmi Note 2 MIUI/V7.5.5.0.LHMCNDE',
+                            'Accept-Encoding': 'gzip',
+                        }
+                    )
+                    request.meta['mobile'] = str(mobile_number)
+                    request.meta['msk'] = crypt.sk
+                    request.meta['mtk'] = crypt.tk
+                    request.meta['muid'] = crypt.uid
+                    yield request
+
     def parse(self, response):
         try:
+            print response.body
             json_obj = json.loads(response.body)
             if str(json_obj['resultCode'] == 0):
                 json_str = crypt.decrypt_mobile_sk(json_obj['data'], str(response.request.meta['msk']))
@@ -52,10 +112,8 @@ class MobileSpider(RedisCrawlSpider):
                         if not crypt.is_changing:
                             print 'changing auth'
                             if crypt.change_auth():
-                                # send_email('change auth success')
                                 print 'change auth success'
                             else:
-                                # send_email('change auth fail')
                                 print 'change auth failure'
                         else:
                             while crypt.is_changing:
@@ -83,17 +141,15 @@ class MobileSpider(RedisCrawlSpider):
                 # '{"resultCode":1400,"errorMsg":"req invalid"}'
                 print json_obj['resultCode']
                 print json_obj['errorMsg']
-                # send_email(json.dumps(json_obj))
-
         except Exception, e:
             print e.message
             print traceback.format_exc()
 
-    def start_requests_single(self):
+    def start_single_requests(self):
         request = scrapy.Request(
             url=crypt.get_posturl(),
             method='POST',
-            body=crypt.get_poststr('13208108948'),
+            body=crypt.get_poststr(self.mobile_number),
             headers={
                 'X-CLIENT-PFM': '20',
                 'X-CLIENT-VCODE': '81',
@@ -103,13 +159,13 @@ class MobileSpider(RedisCrawlSpider):
                 'Accept-Encoding': 'gzip',
             }
         )
-        request.meta['mobile'] = '13208108948'
+        request.meta['mobile'] = self.mobile_number
         request.meta['msk'] = crypt.sk
         request.meta['mtk'] = crypt.tk
         request.meta['muid'] = crypt.uid
         yield request
 
-    def start_requests(self):
+    def start_random_requests(self):
         print 'start_requests'
         parent_dir = os.path.dirname(__file__)  # 获取当前文件夹的绝对路径
         file_path = os.path.join(parent_dir, 'mobilecode.txt')
@@ -145,7 +201,7 @@ class MobileSpider(RedisCrawlSpider):
                 request.meta['muid'] = crypt.uid
                 yield request
 
-    def start_requests_old(self):
+    def start_sequence_requests(self):
         print 'start_requests'
         parent_dir = os.path.dirname(__file__)  # 获取当前文件夹的绝对路径
         file_path = os.path.join(parent_dir, 'mobilecode.txt')
