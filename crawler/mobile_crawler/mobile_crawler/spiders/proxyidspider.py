@@ -158,10 +158,41 @@ def crawl_proxy360_proxy_ip():
     print proxies
     return proxies
 
+def dynamic_crawl_goubanjia_proxies():
+    redis_client = redis.Redis(host='192.168.0.21', port=6379)
+    proxies_data = redis_client.get('DYNAMIC_PROXIES')
+    if proxies_data:
+        proxies = json.loads(proxies_data)
+    else:
+        order_id = 'a66cff43be83d8f1c3724945ded69549'
+        url = 'http://dynamic.goubanjia.com/dynamic/get/' + order_id + '.html?ttl'
+        response = requests.get(url)
+        datas = str(response.text).split(':')
+        port_time = datas[1].split(',')
+        proxies = {}
+        proxies['http'] = 'http://' + str(datas[0]).strip() + ':' + str(port_time[0]).strip()
+        proxies['https'] = 'http://' + str(datas[0]).strip() + ':' + str(port_time[0]).strip()
+        redis_client.set('DYNAMIC_PROXIES', json.dumps(proxies),
+            int(port_time[1]) / 1000)
+        print proxies
+    return proxies
+
+def vote():
+    url = 'http://top.chengdu.cn/acts/2016_gdwh/base.php'
+    data = {"action": "vote", "tid": "35375387"}
+    for i in xrange(1000):
+        # session = requests.Session()
+        # response = session.post(url, params=data,
+        #                         proxies=dynamic_crawl_goubanjia_proxies(), verify=False)
+        # response = requests.post(url=url, data=data)
+        proxies = dynamic_crawl_goubanjia_proxies()
+        response = requests.post(url, data=data, verify=False, proxies=proxies)
+        print response.text
+
 if __name__ == '__main__':
     operation_system = platform.system()
     if operation_system == 'Windows':
         print 'Windows'
     elif operation_system == 'Linux':
         print 'Linux'
-    crawl_xicidaili_proxy_ip()
+    vote()
