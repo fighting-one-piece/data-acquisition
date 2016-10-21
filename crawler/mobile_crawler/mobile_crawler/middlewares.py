@@ -32,6 +32,36 @@ class UserAgentMiddleware(object):
         print "**********User-Agent: " + user_agent
         request.headers.setdefault('User-Agent', user_agent)
 
+class QueueProxyMiddleware(object):
+
+    def __init__(self):
+        self.redis_client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT)
+
+    def process_request(self, request, spider):
+
+        proxies_data = self.redis_client.get('QUEUE_PROXIES')
+        if proxies_data:
+            proxies = json.loads(proxies_data)
+        else:
+            proxies = []
+            proxies_queue = self.redis_client.zrange('proxy_id_queue', 0, 200)
+            for ip_port in proxies_queue:
+                proxy = {}
+                proxy['ip_port'] = str(ip_port).strip().replace(' ', '')
+                proxy['user_pass'] = ''
+                proxies.append(proxy)
+            self.redis_client.set('QUEUE_PROXIES', json.dumps(proxies), 180)
+
+        proxy = random.choice(proxies)
+        if proxy['user_pass'] is not None:
+            request.meta['proxy'] = "http://%s" % proxy['ip_port']
+            encoded_user_pass = base64.encodestring(proxy['user_pass'])
+            request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
+            print "**************QueueProxyMiddleware have pass************" + proxy['ip_port']
+        else:
+            print "**************QueueProxyMiddleware no pass************" + proxy['ip_port']
+            request.meta['proxy'] = "http://%s" % proxy['ip_port']
+
 class StaticProxyMiddleware(object):
 
     def __init__(self):

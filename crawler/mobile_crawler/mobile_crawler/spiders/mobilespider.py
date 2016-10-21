@@ -87,7 +87,6 @@ class MobileSpider(RedisCrawlSpider):
 
     def parse(self, response):
         try:
-            print response.body
             json_obj = json.loads(response.body)
             if str(json_obj['resultCode'] == 0):
                 json_str = crypt.decrypt_mobile_sk(json_obj['data'], str(response.request.meta['msk']))

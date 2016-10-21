@@ -225,7 +225,7 @@ def selenium_crawl_xicidaili_proxies():
         browser = webdriver.Chrome(chrome_driver, service_args=service_args, service_log_path=service_log_path)
 
     proxies = []
-    for i in xrange(11):
+    for i in xrange(6):
         target_url = "http://www.xicidaili.com/nt/" + str(i)
         browser.get(target_url)
         tr_elements = browser.find_elements_by_css_selector('tr.odd')
@@ -245,6 +245,7 @@ def vote(proxies):
     data = {"action": "vote", "tid": "35375387"}
     print proxies
     try:
+        hit = 0
         for i in xrange(100):
             headers = {
                     'Accept': '*/*',
@@ -256,8 +257,11 @@ def vote(proxies):
                     'Referer': 'http://top.chengdu.cn/acts/2016_gdwh/?pageNo=51&kwd='}
             response = requests.post(url, data=data, verify=False, headers=headers, proxies=proxies)
             if response.text == '({msg:\'每个IP在24小时之内，只能投票100次。\'})':
-                print response.text
-                break
+                hit = hit + 1
+                print '%s hit %s' % (response.text, hit)
+                if hit == 10:
+                    break
+
     except Exception, e:
         print e.message
 
@@ -268,24 +272,24 @@ class refresh_vote_action(threading.Thread):
         self.thread_id = thread_id
 
     def run(self):
-        # proxies_array = selenium_crawl_goubanjia_proxies()
-        # proxies_0 = selenium_crawl_xicidaili_proxies()
-        # proxies_1 = static_crawl_proxy360_proxies()
+        proxies_array = selenium_crawl_goubanjia_proxies()
+        proxies_0 = selenium_crawl_xicidaili_proxies()
+        proxies_1 = static_crawl_proxy360_proxies()
         # proxies_2 = static_crawl_kuaidaili_proxies()
-        # proxies_array.extend(proxies_0)
-        # proxies_array.extend(proxies_1)
+        proxies_array.extend(proxies_0)
+        proxies_array.extend(proxies_1)
         # proxies_array.extend(proxies_2)
-        for i in xrange(500):
-            # if i % 10 == 0:
-            #     proxies_array.append(dynamic_crawl_goubanjia_proxies())
+        for i in xrange(20):
+            if i % 5 == 0:
+                proxies_array.append(dynamic_crawl_goubanjia_proxies())
             print 'thread %s start running in %s ' % (self.thread_id, i)
-            # vote(random.choice(proxies_array))
-            vote(dynamic_crawl_goubanjia_proxies())
+            vote(random.choice(proxies_array))
+            # vote(dynamic_crawl_goubanjia_proxies())
 
 if __name__ == '__main__':
     while True:
         thread_pool = []
-        for i in xrange(10):
+        for i in xrange(5):
             thread_pool.append(refresh_vote_action(i))
 
         for t_thread in thread_pool:

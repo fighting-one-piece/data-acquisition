@@ -56,10 +56,11 @@ COOKIES_ENABLED = False
 
 DOWNLOADER_MIDDLEWARES = {
    'mobile_crawler.middlewares.UserAgentMiddleware': 1,
-   'mobile_crawler.middlewares.DynamicProxyMiddleware': 80,
-   'mobile_crawler.middlewares.StaticProxyMiddleware': 100,
-   # 'mobile_crawler.middlewares.SeleniumProxyMiddleware': 120,
-   'mobile_crawler.middlewares.SeleniumOptProxyMiddleware': 120,
+   # 'mobile_crawler.middlewares.QueueProxyMiddleware': 80,
+   # 'mobile_crawler.middlewares.DynamicProxyMiddleware': 80,
+   # 'mobile_crawler.middlewares.StaticProxyMiddleware': 100,
+   'mobile_crawler.middlewares.SeleniumProxyMiddleware': 120,
+   # 'mobile_crawler.middlewares.SeleniumOptProxyMiddleware': 120,
    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 140,
 }
 
@@ -100,13 +101,24 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+# Enables scheduling storing requests queue in redis
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+# Don't cleanup redis queues, allows to pause/resume crawls.
 SCHEDULER_PERSIST = True
+# Schedule requests using a priority queue
+# scrapy_redis.queue.SpiderQueue FIFO
+# scrapy_redis.queue.SpiderStack Schedule requests using a stack (LIFO)
 SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
+# Max idle time to prevent the spider from being closed when distributed crawling.
+# This only works if queue class is SpiderQueue or SpiderStack,
+# and may also block the same time when your spider start at the first time (because the queue is empty).
+SCHEDULER_IDLE_BEFORE_CLOSE = 10
+# The class used to detect and filter duplicate requests
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+# If set, this takes precedence over the REDIS_HOST and REDIS_PORT settings
 REDIS_URL = 'redis://192.168.0.21:6379'
 REDIS_HOST = '192.168.0.21'
 REDIS_PORT = 6379
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 
 USER_AGENTS = [
     "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50",
