@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import re
 import sys
 import json
 import redis
@@ -73,8 +74,12 @@ class StaticProxyMiddleware(object):
         if proxies_data:
             proxies = json.loads(proxies_data)
         else:
-            proxies = static_crawl_proxy360_proxy_ip()
-            self.redis_client.set('STATIC_PROXIES', json.dumps(proxies), 300)
+            proxies = []
+            proxies_01 = static_crawl_proxy360_proxy_ip()
+            proxies_02 = static_crawl_xicidaili_proxy_ip()
+            proxies.extend(proxies_01)
+            proxies.extend(proxies_02)
+            self.redis_client.set('STATIC_PROXIES', json.dumps(proxies), 600)
 
         proxy = random.choice(proxies)
         if proxy['user_pass'] is not None:
@@ -124,8 +129,8 @@ class SeleniumProxyMiddleware(object):
             proxies = []
             goubanjia_proxies = selenium_crawl_goubanjia_proxy_ip()
             proxies.extend(goubanjia_proxies)
-            xicidaili_proxies = selenium_crawl_xicidaili_proxy_ip()
-            proxies.extend(xicidaili_proxies)
+            # xicidaili_proxies = selenium_crawl_xicidaili_proxy_ip()
+            # proxies.extend(xicidaili_proxies)
             self.redis_client.set('SELENIUM_PROXIES', json.dumps(proxies), 300)
 
         proxy = random.choice(proxies)
@@ -191,6 +196,61 @@ def static_crawl_proxy360_proxy_ip():
                 proxies.append(proxy)
                 ip_port = ''
     return proxies
+
+def static_crawl_xicidaili_proxy_ip():
+    url = 'http://api.xicidaili.com/free2016.txt'
+    response = requests.get(url)
+    pattern = '(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}):(\\d+)'
+    ip_port_array = re.findall(pattern, response.text)
+    proxies = []
+    for ip_port in ip_port_array:
+        proxy = {}
+        proxy['ip_port'] = ip_port[0] + ':' + ip_port[1]
+        proxy['user_pass'] = ''
+        proxies.append(proxy)
+    return proxies
+
+def static_crawl_goubanjia_proxy_id():
+    url = 'http://www.goubanjia.com/'
+    req_session = requests.session()
+    headers = {"Accept": "text/html,application/xhtml+xml,application/xml;",
+               "Accept-Encoding": "gzip",
+               "Accept-Language": "zh-CN,zh;q=0.8",
+               "Referer": "http://www.baidu.com/",
+               "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36"
+               }
+    response = req_session.get(url, headers=headers)
+    html = BeautifulSoup(response.text, 'html.parser')
+    proxies = []
+    td_tags = html.select('table.table tr td')
+    ip_port = ''
+    for td_tag in td_tags:
+        if td_tag.has_attr('class'):
+            class_value = td_tag.get('class')
+            if class_value[0] == 'ip':
+                td_tag_all_tags = td_tag.contents
+                ip = ''
+                for td_tag_tag in td_tag_all_tags:
+                    if td_tag_tag.has_attr('style'):
+                        style_name = td_tag_tag.get('style').strip().replace(' ', '')
+                        if style_name and (style_name == 'display:inline-block;'):
+                            if td_tag_tag.string:
+                                ip = ip + td_tag_tag.string
+                    else:
+                        if td_tag_tag.string:
+                            ip = ip + td_tag_tag.string
+                print ip
+                ip_port = ip_port + ip
+            else:
+                print td_tag
+                print td_tag.string
+                ip_port = ip_port + ':' + td_tag.string
+                proxy = {}
+                proxy['ip_port'] = ip_port
+                proxy['user_pass'] = ''
+                proxies.append(proxy)
+                ip_port = ''
+    print proxies
 
 def dynamic_crawl_goubanjia_proxy_ip():
     proxies = []
@@ -355,4 +415,4 @@ if __name__ == '__main__':
     elif current_operation_system == 'Linux':
         driver_file_path = os.path.join(parent_dir, 'driver', 'chromedriver')
     print driver_file_path
-    print dynamic_crawl_goubanjia_proxy_ip()
+    print static_crawl_goubanjia_proxy_id()
