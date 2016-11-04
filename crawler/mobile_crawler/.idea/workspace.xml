@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d128206-e773-44fc-80bb-42eb2322b02a" name="Default" comment="" />
+    <list default="true" readonly="true" id="3d128206-e773-44fc-80bb-42eb2322b02a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile_crawler/spiders/qqspider.py" />
+    </list>
     <ignored path="scrapy_crawler_mobile.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -16,11 +18,12 @@
     <SUITE FILE_PATH="coverage/mobile_crawler$refreshvote.coverage" NAME="refreshvote Coverage Results" MODIFIED="1476667345075" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mobile_crawler/spiders" />
     <SUITE FILE_PATH="coverage/mobile_crawler$votecrawler.coverage" NAME="votecrawler Coverage Results" MODIFIED="1476346055144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mobile_crawler/spiders" />
     <SUITE FILE_PATH="coverage/scrapy_crawler$mobiletest.coverage" NAME="mobiletest Coverage Results" MODIFIED="1474277502850" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scrapy_crawler/spiders" />
-    <SUITE FILE_PATH="coverage/mobile_crawler$mobilescheduler.coverage" NAME="mobilescheduler Coverage Results" MODIFIED="1477643348203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mobile_crawler/spiders" />
+    <SUITE FILE_PATH="coverage/mobile_crawler$mobilescheduler.coverage" NAME="mobilescheduler Coverage Results" MODIFIED="1478053276840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mobile_crawler/spiders" />
     <SUITE FILE_PATH="coverage/scrapy_crawler$middlewares.coverage" NAME="middlewares Coverage Results" MODIFIED="1474366240153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scrapy_crawler" />
     <SUITE FILE_PATH="coverage/scrapy_crawler$mobilerequest.coverage" NAME="mobilerequest Coverage Results" MODIFIED="1475065194453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scrapy_crawler/spiders" />
     <SUITE FILE_PATH="coverage/scrapy_crawler$proxyidspider.coverage" NAME="proxyidspider Coverage Results" MODIFIED="1474883028874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scrapy_crawler/spiders" />
-    <SUITE FILE_PATH="coverage/mobile_crawler$middlewares__1_.coverage" NAME="middlewares (1) Coverage Results" MODIFIED="1477644723730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mobile_crawler" />
+    <SUITE FILE_PATH="coverage/mobile_crawler$qqspider.coverage" NAME="qqspider Coverage Results" MODIFIED="1478053420977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mobile_crawler/spiders" />
+    <SUITE FILE_PATH="coverage/mobile_crawler$middlewares__1_.coverage" NAME="middlewares (1) Coverage Results" MODIFIED="1477900891172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mobile_crawler" />
     <SUITE FILE_PATH="coverage/scrapy_crawler$qqqunspider.coverage" NAME="qqqunspider Coverage Results" MODIFIED="1475466294925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scrapy_crawler/spiders" />
     <SUITE FILE_PATH="coverage/mobile_crawler$proxyidspider__1_.coverage" NAME="proxyidspider (1) Coverage Results" MODIFIED="1476322793272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mobile_crawler/spiders" />
     <SUITE FILE_PATH="coverage/scrapy_crawler$mobilecrypt.coverage" NAME="mobilecrypt Coverage Results" MODIFIED="1474526888719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scrapy_crawler/spiders" />
@@ -34,11 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mobilespider.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilespider.py">
+      <file leaf-file-name="proxyidspider.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/proxyidspider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="123" column="34" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="34" />
+            <state relative-caret-position="1176">
+              <caret line="64" column="4" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
               </folding>
@@ -49,8 +52,8 @@
       <file leaf-file-name="middlewares.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobile_crawler/middlewares.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="81" column="14" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
+            <state relative-caret-position="4725">
+              <caret line="236" column="15" selection-start-line="236" selection-start-column="15" selection-end-line="236" selection-end-column="15" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
               </folding>
@@ -58,21 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="proxyidspider.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/proxyidspider.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-229">
-              <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="110" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobile_crawler/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1563">
-              <caret line="125" column="67" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="67" />
+            <state relative-caret-position="882">
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -81,8 +74,8 @@
       <file leaf-file-name="mobilescheduler.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilescheduler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+            <state relative-caret-position="693">
+              <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
               <folding>
                 <element signature="e#24#33#0" expanded="true" />
               </folding>
@@ -90,11 +83,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pipelines.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mobile_crawler/pipelines.py">
+      <file leaf-file-name="qqspider.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/qqspider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+            <state relative-caret-position="597">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding>
+                <element signature="e#25#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mobilespider.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilespider.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1281">
+              <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mobilecrypt.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilecrypt.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1113">
+              <caret line="62" column="47" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -141,11 +156,12 @@
         <option value="$PROJECT_DIR$/mobile_crawler/spiders/votespider.py" />
         <option value="$PROJECT_DIR$/mobile_crawler/spiders/votecrawler.py" />
         <option value="$PROJECT_DIR$/mobile_crawler/spiders/refreshvote.py" />
-        <option value="$PROJECT_DIR$/mobile_crawler/spiders/mobilescheduler.py" />
-        <option value="$PROJECT_DIR$/mobile_crawler/spiders/mobilespider.py" />
-        <option value="$PROJECT_DIR$/mobile_crawler/settings.py" />
         <option value="$PROJECT_DIR$/mobile_crawler/spiders/proxyidspider.py" />
         <option value="$PROJECT_DIR$/mobile_crawler/middlewares.py" />
+        <option value="$PROJECT_DIR$/mobile_crawler/settings.py" />
+        <option value="$PROJECT_DIR$/mobile_crawler/spiders/mobilescheduler.py" />
+        <option value="$PROJECT_DIR$/mobile_crawler/spiders/mobilespider.py" />
+        <option value="$PROJECT_DIR$/mobile_crawler/spiders/qqspider.py" />
       </list>
     </option>
   </component>
@@ -156,10 +172,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1592" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -213,8 +229,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,24 +281,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile_crawler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile_crawler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile_crawler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="driver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -295,19 +293,20 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="last_opened_file_path" value="F:/workspace/workspace_temp_python_0/mobile_crawler" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
-    <property name="settings.editor.splitter.proportion" value="0.24937657" />
+    <property name="settings.editor.splitter.proportion" value="0.25951558" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\develop\github\repositories\repository-python\crawler\mobile_crawler\mobile_crawler\driver" />
       <recent name="F:\develop\github\repositories\repository-python\crawler\mobile_crawler\mobile_crawler\spiders" />
       <recent name="F:\workspace\workspace_temp_python_0\scrapy_crawler\scrapy_crawler\driver" />
       <recent name="F:\workspace\workspace_temp_python_0\scrapy_crawler\scrapy_crawler\spiders" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.middlewares (1)">
+  <component name="RunManager" selected="Python.qqspider">
     <configuration default="false" name="middlewares (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -322,24 +321,6 @@
       <module name="mobile_crawler" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mobile_crawler/middlewares.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="proxyidspider (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mobile_crawler/spiders" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="mobile_crawler" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mobile_crawler/spiders/proxyidspider.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -394,6 +375,24 @@
       <module name="mobile_crawler" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mobile_crawler/spiders/mobilescheduler.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="qqspider" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mobile_crawler/spiders" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="mobile_crawler" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mobile_crawler/spiders/qqspider.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -608,18 +607,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.middlewares (1)" />
-      <item index="1" class="java.lang.String" itemvalue="Python.proxyidspider (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Python.votecrawler" />
-      <item index="3" class="java.lang.String" itemvalue="Python.refreshvote" />
-      <item index="4" class="java.lang.String" itemvalue="Python.mobilescheduler" />
+      <item index="1" class="java.lang.String" itemvalue="Python.votecrawler" />
+      <item index="2" class="java.lang.String" itemvalue="Python.refreshvote" />
+      <item index="3" class="java.lang.String" itemvalue="Python.mobilescheduler" />
+      <item index="4" class="java.lang.String" itemvalue="Python.qqspider" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.middlewares (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Python.qqspider" />
         <item index="1" class="java.lang.String" itemvalue="Python.mobilescheduler" />
-        <item index="2" class="java.lang.String" itemvalue="Python.refreshvote" />
-        <item index="3" class="java.lang.String" itemvalue="Python.votecrawler" />
-        <item index="4" class="java.lang.String" itemvalue="Python.proxyidspider (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.middlewares (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.refreshvote" />
+        <item index="4" class="java.lang.String" itemvalue="Python.votecrawler" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -633,6 +632,28 @@
   <component name="SvnConfiguration" cleanupOnStartRun="true">
     <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
     <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\develop\github\repositories\repository-python\crawler\mobile_crawler" />
+          <option name="myCopyRoot" value="F:\develop\github\repositories\repository-python\crawler\mobile_crawler" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\develop\github\repositories\repository-python\crawler\mobile_crawler\.idea" />
+          <option name="myCopyRoot" value="F:\develop\github\repositories\repository-python\crawler\mobile_crawler\.idea" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\develop\github\repositories\repository-python\crawler\mobile_crawler" />
+          <option name="myCopyRoot" value="F:\develop\github\repositories\repository-python\crawler\mobile_crawler" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -714,7 +735,35 @@
       <option name="project" value="LOCAL" />
       <updated>1475467851162</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="mobile crawler initialize code commit">
+      <created>1477899416362</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1477899416362</updated>
+    </task>
+    <task id="LOCAL-00012" summary="mobile crawler code modify commit">
+      <created>1477900944919</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1477900944919</updated>
+    </task>
+    <task id="LOCAL-00013" summary="mobile crawler code modify commit">
+      <created>1477902175289</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1477902175289</updated>
+    </task>
+    <task id="LOCAL-00014" summary="mobile crawler code modify commit">
+      <created>1477989646989</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1477989646989</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -730,21 +779,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
-    <editor active="true" />
+    <frame x="1592" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.49571735" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23653017" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.49571735" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41331485" sideWeight="0.50516796" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852387" sideWeight="0.49571735" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35639685" sideWeight="0.49483204" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35506243" sideWeight="0.48191214" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35211268" sideWeight="0.48191214" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871014" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -755,11 +802,14 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25253665" sideWeight="0.49483204" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32852387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871014" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -807,7 +857,9 @@
     <MESSAGE value="add proxy ip-port commit" />
     <MESSAGE value="redis host modify commit" />
     <MESSAGE value="selenium crawl proxy id code commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="selenium crawl proxy id code commit" />
+    <MESSAGE value="mobile crawler initialize code commit" />
+    <MESSAGE value="mobile crawler code modify commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="mobile crawler code modify commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -823,9 +875,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scrapy_crawler_mobile/pipelines.py" />
-    <entry file="file://$PROJECT_DIR$/scrapy_crawler_mobile/items.py" />
-    <entry file="file://$PROJECT_DIR$/scrapy_crawler_mobile/__init__.py" />
     <entry file="file://$PROJECT_DIR$/scrapy_crawler_mobile/spiders/JobSpider.py" />
     <entry file="file://$PROJECT_DIR$/scrapy_crawler/spiders/mobileemail.py" />
     <entry file="file://$PROJECT_DIR$/scrapy_crawler/spiders/proxyid.txt" />
@@ -833,13 +882,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="185" column="24" selection-start-line="185" selection-start-column="18" selection-end-line="185" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../python/Python27/Lib/site-packages/selenium/webdriver/remote/webdriver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="243" column="8" selection-start-line="243" selection-start-column="8" selection-end-line="243" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -937,20 +979,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilecrypt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilecode.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile_crawler/items.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -973,13 +1001,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/refreshvote.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../../python/Python27/Lib/site-packages/redis/client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="379">
@@ -991,7 +1012,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="394" column="4" selection-start-line="394" selection-start-column="4" selection-end-line="394" selection-end-column="4" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../python/Python27/Lib/re.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="142" column="18" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../python/Python27/Lib/site-packages/requests/sessions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="478" column="8" selection-start-line="478" selection-start-column="8" selection-end-line="478" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../python/Python27/Lib/site-packages/selenium/webdriver/common/desired_capabilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="59" column="41" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilescheduler.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile_crawler/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../python/Python27/Lib/site-packages/selenium/webdriver/remote/webdriver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="55" column="71" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/refreshvote.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/proxyidspider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1176">
+          <caret line="64" column="4" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
+          <folding>
+            <element signature="e#25#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1002,62 +1081,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile_crawler/pipelines.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../python/Python27/Lib/re.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="142" column="18" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilescheduler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilespider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="123" column="34" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="34" />
-          <folding>
-            <element signature="e#25#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../../python/Python27/Lib/site-packages/requests/sessions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="478" column="8" selection-start-line="478" selection-start-column="8" selection-end-line="478" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/proxyidspider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="110" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile_crawler/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="81" column="14" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="14" />
+        <state relative-caret-position="4725">
+          <caret line="236" column="15" selection-start-line="236" selection-start-column="15" selection-end-line="236" selection-end-column="15" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
           </folding>
@@ -1066,9 +1093,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile_crawler/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1563">
-          <caret line="125" column="67" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="67" />
+        <state relative-caret-position="882">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilecode.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilecrypt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1113">
+          <caret line="62" column="47" selection-start-line="62" selection-start-column="47" selection-end-line="62" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilescheduler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="36" column="24" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/mobilespider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1281">
+          <caret line="71" column="67" selection-start-line="71" selection-start-column="67" selection-end-line="71" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile_crawler/spiders/qqspider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="597">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="e#25#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

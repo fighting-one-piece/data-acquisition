@@ -31,13 +31,23 @@ REACTOR_THREADPOOL_MAXSIZE = 10
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 2
+DOWNLOAD_DELAY = 3
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
+
+LOG_ENABLED = True
+
+LOG_ENCODING = 'utf-8'
+
+#可选的级别有: CRITICAL、 ERROR、WARNING、INFO、DEBUG
+LOG_LEVEL = 'INFO'
+
+#如果为True ，进程所有的标准输出(及错误)将会被重定向到log中。例如，执行 print 'hello' ，其将会在Scrapy log中显示
+LOG_STDOUT = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False

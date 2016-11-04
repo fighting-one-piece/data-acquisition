@@ -30,7 +30,7 @@ class UserAgentMiddleware(object):
 
     def process_request(self, request, spider):
         user_agent = random.choice(self.agents)
-        print "**********User-Agent: " + user_agent
+        # print "**********User-Agent: " + user_agent
         request.headers.setdefault('User-Agent', user_agent)
 
 class QueueProxyMiddleware(object):
@@ -58,9 +58,9 @@ class QueueProxyMiddleware(object):
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
             encoded_user_pass = base64.encodestring(proxy['user_pass'])
             request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
-            print "**************QueueProxyMiddleware have pass************" + proxy['ip_port']
+            # print "**************QueueProxyMiddleware have pass************" + proxy['ip_port']
         else:
-            print "**************QueueProxyMiddleware no pass************" + proxy['ip_port']
+            # print "**************QueueProxyMiddleware no pass************" + proxy['ip_port']
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
 
 class StaticProxyMiddleware(object):
@@ -86,9 +86,9 @@ class StaticProxyMiddleware(object):
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
             encoded_user_pass = base64.encodestring(proxy['user_pass'])
             request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
-            print "**********StaticProxyMiddleware have pass**********" + proxy['ip_port']
+            # print "**********StaticProxyMiddleware have pass**********" + proxy['ip_port']
         else:
-            print "**********StaticProxyMiddleware no pass**********" + proxy['ip_port']
+            # print "**********StaticProxyMiddleware no pass**********" + proxy['ip_port']
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
 
 class DynamicProxyMiddleware(object):
@@ -110,9 +110,9 @@ class DynamicProxyMiddleware(object):
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
             encoded_user_pass = base64.encodestring(proxy['user_pass'])
             request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
-            print "**********DynamicProxyMiddleware have pass**********" + proxy['ip_port']
+            # print "**********DynamicProxyMiddleware have pass**********" + proxy['ip_port']
         else:
-            print "**********DynamicProxyMiddleware no pass**********" + proxy['ip_port']
+            # print "**********DynamicProxyMiddleware no pass**********" + proxy['ip_port']
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
 
 class SeleniumProxyMiddleware(object):
@@ -127,8 +127,10 @@ class SeleniumProxyMiddleware(object):
             proxies = json.loads(proxies_data)
         else:
             proxies = []
-            goubanjia_proxies = selenium_crawl_goubanjia_proxy_ip()
+            goubanjia_proxies = selenium_htmlunit_crawl_goubanjia_proxy_ip()
             proxies.extend(goubanjia_proxies)
+            # goubanjia_proxies = selenium_crawl_goubanjia_proxy_ip()
+            # proxies.extend(goubanjia_proxies)
             # xicidaili_proxies = selenium_crawl_xicidaili_proxy_ip()
             # proxies.extend(xicidaili_proxies)
             self.redis_client.set('SELENIUM_PROXIES', json.dumps(proxies), 300)
@@ -138,9 +140,9 @@ class SeleniumProxyMiddleware(object):
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
             encoded_user_pass = base64.encodestring(proxy['user_pass'])
             request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
-            print "**********SeleniumProxyMiddleware have pass**********" + proxy['ip_port']
+            # print "**********SeleniumProxyMiddleware have pass**********" + proxy['ip_port']
         else:
-            print "**********SeleniumProxyMiddleware no pass**********" + proxy['ip_port']
+            # print "**********SeleniumProxyMiddleware no pass**********" + proxy['ip_port']
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
 
 class SeleniumOptProxyMiddleware(object):
@@ -167,9 +169,9 @@ class SeleniumOptProxyMiddleware(object):
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
             encoded_user_pass = base64.encodestring(proxy['user_pass'])
             request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
-            print "**********SeleniumProxyMiddleware have pass**********" + proxy['ip_port']
+            # print "**********SeleniumProxyMiddleware have pass**********" + proxy['ip_port']
         else:
-            print "**********SeleniumProxyMiddleware no pass**********" + proxy['ip_port']
+            # print "**********SeleniumProxyMiddleware no pass**********" + proxy['ip_port']
             request.meta['proxy'] = "http://%s" % proxy['ip_port']
 
     def __del__(self):
@@ -210,7 +212,7 @@ def static_crawl_xicidaili_proxy_ip():
         proxies.append(proxy)
     return proxies
 
-def static_crawl_goubanjia_proxy_id():
+def static_crawl_goubanjia_proxy_ip():
     url = 'http://www.goubanjia.com/'
     req_session = requests.session()
     headers = {"Accept": "text/html,application/xhtml+xml,application/xml;",
@@ -357,19 +359,55 @@ def selenium_crawl_goubanjia_proxy_ip():
     ip_elements = browser.find_elements_by_css_selector('table.table tr td.ip')
     for ip_element in ip_elements:
         ips.append(ip_element.text)
-    ports = []
-    port_elements = browser.find_elements_by_css_selector('table.table tr td.port')
-    for port_element in port_elements:
-        ports.append(port_element.text)
+    # ports = []
+    # port_elements = browser.find_elements_by_css_selector('table.table tr td.port')
+    # for port_element in port_elements:
+    #     ports.append(port_element.text)
     proxies = []
     for i in xrange(len(ips)):
         proxy = {}
-        proxy['ip_port'] = ips[i] + ':' + ports[i]
+        # proxy['ip_port'] = ips[i] + ':' + ports[i]
+        proxy['ip_port'] = ips[i]
         proxy['user_pass'] = ''
         proxies.append(proxy)
 
     browser.close()
     browser.quit()
+    return proxies
+
+def selenium_htmlunit_crawl_goubanjia_proxy_ip():
+    url = 'http://www.goubanjia.com/'
+    desired_capabilities = webdriver.DesiredCapabilities.HTMLUNITWITHJS.copy()
+    # desired_capabilities['version'] = "chrome"
+    # desired_capabilities['version'] = "internet explorer"
+    browser = webdriver.Remote(command_executor='http://192.168.0.115:4444/wd/hub',
+        desired_capabilities=desired_capabilities)
+    browser.get("http://www.goubanjia.com/")
+    html = BeautifulSoup(browser.page_source, 'html.parser')
+    td_tags = html.select('table.table tr td.ip')
+    proxies = []
+    for td_tag in td_tags:
+        td_tag_all_tags = td_tag.contents
+        ip = ''
+        for td_tag_tag in td_tag_all_tags:
+            if td_tag_tag is None or str(td_tag_tag).strip() == '' or \
+                    str(td_tag_tag).strip().replace(' ', '') == ':': continue
+            # print 'td_tag_tag: %s' %td_tag_tag
+            if td_tag_tag.has_attr('style'):
+                style_name = td_tag_tag.get('style').strip().replace(' ', '')
+                # if style_name and (style_name == 'display:none;'):
+                #     print '@@@@@@:%s' %td_tag_tag
+                if not style_name or style_name != 'display:none;':
+                    ip = ip + str(td_tag_tag.string).strip()
+            else:
+                if td_tag_tag.has_attr('class'):
+                    port = str(td_tag_tag.string).strip()
+                else:
+                    ip = ip + str(td_tag_tag.string).strip()
+        proxy = {}
+        proxy['ip_port'] = ip + ':' + port
+        proxy['user_pass'] = ''
+        proxies.append(proxy)
     return proxies
 
 def selenium_crawl_xicidaili_proxy_ip():
@@ -415,4 +453,4 @@ if __name__ == '__main__':
     elif current_operation_system == 'Linux':
         driver_file_path = os.path.join(parent_dir, 'driver', 'chromedriver')
     print driver_file_path
-    print static_crawl_goubanjia_proxy_id()
+    print selenium_htmlunit_crawl_goubanjia_proxy_ip()
