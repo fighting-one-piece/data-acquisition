@@ -23,10 +23,10 @@ if sys.getdefaultencoding() != default_encoding:
     reload(sys)
     #sys.setdefaultencoding(default_encoding)
     
-def createDB(cur, db, dbname):
+def createDB(cur, conn, dbname):
     sql = "CREATE DATABASE IF NOT EXISTS "+dbname+" DEFAULT CHARSET utf8"
     cur.execute(sql)
-    db.commit()
+    conn.commit()
     print "===========DBNAME:%s========="%dbname
 
 def createTable(cur,db,dbname,tbname,bCreate):
@@ -35,6 +35,7 @@ def createTable(cur,db,dbname,tbname,bCreate):
     try:
         dbname = str(dbname).replace('-','').replace('(','').replace(')','')
         tbname = str(tbname).replace('-','').replace('(','').replace(')','')
+        print 'tbname: ' + tbname
         sql = "CREATE DATABASE IF NOT EXISTS "+dbname+" DEFAULT CHARSET utf8"
         cur.execute(sql)
         db.commit()
@@ -46,7 +47,7 @@ def createTable(cur,db,dbname,tbname,bCreate):
         c7 varchar(40),c8 varchar(40),c9 varchar(40),
         c10 varchar(40),c11 varchar(40),c12 varchar(40),
         c13 varchar(40),c14 varchar(40),c15 varchar(40),
-         c16 varchar(40),c17 varchar(40),c18 varchar(40),
+        c16 varchar(40),c17 varchar(40),c18 varchar(40),
         c19 varchar(40),c20 varchar(40),
         sourceFile varchar(200),updateTime varchar(40) );"""%tbname
         cur.execute(sql)
@@ -98,7 +99,7 @@ if __name__=='__main__':
     #if not os.path.exists(path):
     #    print "====ERROR:%s can not find"%path
     #    sys.exit(1)
-    path = u"F://2008年10月北京市阀门配件产品生产销售企业名录数据库(二次开发).xls"
+    path = u"F://2012年3月江苏注册企业3-19-331-5988条.xls"
     #path = u"F://2008年10月北京市阀门配件产品生产销售企业名录数据库(二).xls"
         
     basenames = os.path.basename(path).split('.')
@@ -122,7 +123,7 @@ if __name__=='__main__':
     for sheet in workbook.sheets() :
         print "==========sheetname:%s========" %(sheet.name)
        
-        bCreate = True
+#         bCreate = True
         sheetName = str(sheet.name).replace('.','').replace(' ', '')
         tbname = "tb" + basename + "_" + sheetName
         tbname = str(tbname).replace(' ', '').replace('-', '').replace('(', '').replace(')', '').replace('、','')
@@ -132,6 +133,13 @@ if __name__=='__main__':
             tbname = tbname.decode('utf-8')[tbname_len - 54 : tbname_len].encode('utf-8')
             tbname = "tb" + tbname
             print tbname
+            
+        if tbname.endswith('_'):
+            tbname = tbname[0:len(tbname) - 1]
+        print 'tbname: ' + tbname
+#         createTable(cur,conn,dbname,tbname)
+        
+        
         '''
         if len(tbname) >= 120 :
             tmp_tbname = []
@@ -155,6 +163,7 @@ if __name__=='__main__':
         row = 0
         colsList = []
         
+        bCreate = True
         nrows = sheet.nrows
         ncols = sheet.ncols
         print 'rows : %s -- cols : %s' %(nrows, ncols)

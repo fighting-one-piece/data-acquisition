@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import random
 import requests
 from bs4 import BeautifulSoup
 
@@ -35,7 +36,61 @@ def b():
     print response.text
 
 def c():
-    url = ''
+    url = 'http://cq.hanfenghupan.com/Vote/SubmitVote?_=1478489477071'
+    data = {'sid': '0E72EB81-1FA2-40B7-B17D-4DB0B0C606AD', 'iid': 'FAA6825C-7A11-47DE-80D0-549B13EC6399'}
+    # cookie = 'ASP.NET_SessionId=xxiaztshvacpscmz4xxqs2dk'
+    # response = requests.post(url, data=data)
+
+    headers = {
+        'Accept': 'application/json',
+        'Accept-Encoding': 'gzip, deflate',
+        'Host': 'cq.hanfenghupan.com',
+        # 'Cookie': 'ASP.NET_SessionId=xxiaztshvacpscmz4xxqs2dk',
+        # 'Cookie': 'ASP.NET_SessionId=bfutakj2ti5bbldulkgiqf0c',
+        # 'Cookie': 'ASP.NET_SessionId=gcpbbcximx4rjqylkggsma5i',
+        'Cookie': 'ASP.NET_SessionId=nfna1q4qonishowwt1y1s34q',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36',
+        # 'Referer': 'http://cq.hanfenghupan.com/vote/index?sid=0E72EB81-1FA2-40B7-B17D-4DB0B0C606AD&code=021ifoCc1i9Z7t0ky2Bc1zxjCc1ifoCT&state=STATE'
+        'Referer': 'http://cq.hanfenghupan.com/vote/index?sid=0E72EB81-1FA2-40B7-B17D-4DB0B0C606AD&code=012ifoCc1i9Z7t0ky2Bc1zxjCc1ifoCT&state=STATE'
+        }
+    response = requests.post(url, data=data, verify=False, headers=headers)
+    print response.text
+
+def weibo_authorize_code():
+    url = 'https://api.weibo.com/oauth2/authorize?client_id=1364975478&response_type=code&redirect_uri=https://api.weibo.com/oauth2/default.html'
+    response = requests.get('url')
+    print response.content
+
+def weibo_access_token():
+    url = 'https://api.weibo.com/oauth2/access_token'
+    data = {'client_id': '1364975478', 'client_secret': '1e4f2a5e7b1040d8fbf86db76a349e2a', 'grant_type': 'authorization_code',
+            'code': '0aa0b9c9f14433df63914448b4108a39', 'redirect_uri':'https://api.weibo.com/oauth2/default.html'}
+    response = requests.post(url, data=data, verify=False)
+    print response.text
+    # '00saxW1EWTS4UB0ec44b04c806dI2o'
+
+def weibo_followers():
+    url = 'https://api.weibo.com/2/friendships/followers.json'
+    params = {'access_token': '00saxW1EWTS4UB0ec44b04c806dI2o', 'uid': '3967913626', 'count': 20}
+    response = requests.get(url, params=params, verify=False)
+    print response.text
+
+def weibo_following_user():
+    url = 'https://api.weibo.com/2/friendships/create.json'
+    data = {'access_token': '00saxW1EWTS4UB0ec44b04c806dI2o', 'uid': '3967913626'}
+    response = requests.post(url, data=data, verify=False)
+    print response.text
+
 
 if __name__ == '__main__':
-    b()
+    for i in xrange(20):
+        print i
+        random_num = random.randint(1, 9)
+        print 'random: %s %s' %(random_num, random_num * 1111)
+    str1 = '1,1'
+    print str1.find(':')
+    print str1.split(',')
+    content = '_b'
+    if content.startswith('_'):
+        print content[1:]

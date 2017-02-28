@@ -32,24 +32,30 @@ class MobileSpider(RedisCrawlSpider):
     def start_requests(self):
         print 'start_requests'
         if self.mobile_number:
-            request = scrapy.Request(
-                url=crypt.get_posturl(),
-                method='POST',
-                body=crypt.get_poststr(self.mobile_number),
-                headers={
-                    'X-CLIENT-PFM': '20',
-                    'X-CLIENT-VCODE': '81',
-                    'X-CLIENT-PID': '8888888',
-                    'Content-Type': 'application/json; charset=utf-8',
-                    'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 5.0.2; Redmi Note 2 MIUI/V7.5.5.0.LHMCNDE',
-                    'Accept-Encoding': 'gzip',
-                }
-            )
-            request.meta['mobile'] = self.mobile_number
-            request.meta['msk'] = crypt.sk
-            request.meta['mtk'] = crypt.tk
-            request.meta['muid'] = crypt.uid
-            yield request
+            mobile_number_array = []
+            if str(self.mobile_number).find(",") == -1:
+                mobile_number_array.append(self.mobile_number)
+            else:
+                mobile_number_array = str(self.mobile_number).split(',')
+            for t_mobile_number in mobile_number_array:
+                request = scrapy.Request(
+                    url=crypt.get_posturl(),
+                    method='POST',
+                    body=crypt.get_poststr(t_mobile_number),
+                    headers={
+                        'X-CLIENT-PFM': '20',
+                        'X-CLIENT-VCODE': '81',
+                        'X-CLIENT-PID': '8888888',
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 5.0.2; Redmi Note 2 MIUI/V7.5.5.0.LHMCNDE',
+                        'Accept-Encoding': 'gzip',
+                    }
+                )
+                request.meta['mobile'] = t_mobile_number
+                request.meta['msk'] = crypt.sk
+                request.meta['mtk'] = crypt.tk
+                request.meta['muid'] = crypt.uid
+                yield request
         else:
             parent_dir = os.path.dirname(__file__)  # 获取当前文件夹的绝对路径
             file_path = os.path.join(parent_dir, 'mobilecode.txt')
@@ -64,8 +70,9 @@ class MobileSpider(RedisCrawlSpider):
                 mobile_number_segment = random.choice(mobile_number_segments)
                 print 'fetching mobile code : ' + mobile_number_segment
                 seed = int(mobile_number_segment) * 10000
+                random_num = random.randint(1, 9)
                 for i in xrange(10000):
-                    mobile_number = seed + i
+                    mobile_number = seed + random_num * 1111 - i
                     request = scrapy.Request(
                         url=crypt.get_posturl(),
                         method='POST',

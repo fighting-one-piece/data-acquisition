@@ -17,10 +17,10 @@ if sys.getdefaultencoding() != default_encoding:
     reload(sys)
 #     sys.setdefaultencoding(default_encoding)
     
-def createDB(cur,db,dbname):
+def createDB(cur,conn,dbname):
     sql="CREATE DATABASE IF NOT EXISTS "+dbname+" DEFAULT CHARSET utf8"
     cur.execute(sql)
-    db.commit()
+    conn.commit()
     print "===========DBNAME:%s========="%dbname
 
 def createTable(cur,db,dbname,tbname,bCreate):

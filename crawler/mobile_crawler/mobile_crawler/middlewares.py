@@ -380,7 +380,7 @@ def selenium_htmlunit_crawl_goubanjia_proxy_ip():
     desired_capabilities = webdriver.DesiredCapabilities.HTMLUNITWITHJS.copy()
     # desired_capabilities['version'] = "chrome"
     # desired_capabilities['version'] = "internet explorer"
-    browser = webdriver.Remote(command_executor='http://192.168.0.115:4444/wd/hub',
+    browser = webdriver.Remote(command_executor='http://192.168.0.114:4444/wd/hub',
         desired_capabilities=desired_capabilities)
     browser.get("http://www.goubanjia.com/")
     html = BeautifulSoup(browser.page_source, 'html.parser')
@@ -454,3 +454,4 @@ if __name__ == '__main__':
         driver_file_path = os.path.join(parent_dir, 'driver', 'chromedriver')
     print driver_file_path
     print selenium_htmlunit_crawl_goubanjia_proxy_ip()
+
