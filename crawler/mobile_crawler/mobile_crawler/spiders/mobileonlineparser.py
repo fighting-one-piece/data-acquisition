@@ -8,7 +8,7 @@ import traceback
 import pymongo
 import cPickle as pickle
 from mobilecrypt import crypt
-from twisted.internet import reactor
+from twisted.internet import reactor, defer
 from http11 import HTTP11DownloadHandler
 from scrapy.utils.project import get_project_settings
 
@@ -34,12 +34,12 @@ class MongoDBUtils(object):
 
     def insertDB(self, jsonObj):
         try:
-            dbitem = self.db['imcaller'].find_one({'p': jsonObj['p'], 'name': ''})
+            dbitem = self.db['imcallert'].find_one({'p': jsonObj['p'], 'name': ''})
             if dbitem:
                 if jsonObj['n'] and jsonObj['n'] != '':
-                    self.db['imcaller'].update_one({'p': jsonObj['p']}, {'$set': {'n': jsonObj['n']}})
+                    self.db['imcallert'].update_one({'p': jsonObj['p']}, {'$set': {'n': jsonObj['n']}})
             else:
-                self.db['imcaller'].insert(jsonObj)
+                self.db['imcallert'].insert(jsonObj)
         except pymongo.errors.DuplicateKeyError:
             pass
         except Exception, e:
@@ -48,7 +48,7 @@ class MongoDBUtils(object):
 
     def readOneFromDB(self, mobile):
         try:
-            dbitem = self.db['imcaller'].find_one({'p': mobile})
+            dbitem = self.db['imcallert'].find_one({'p': mobile})
             return dbitem
         except pymongo.errors.DuplicateKeyError:
             pass
@@ -155,6 +155,26 @@ class MongoDBUtils(object):
 #         return_result_array.append(item)
 #     return return_result_array
 
+def parse_success(response, request):
+    try:
+        json_obj = json.loads(response.body)
+        if str(json_obj['resultCode'] == 0):
+            json_str = crypt.decrypt_mobile_sk(json_obj['data'], str(request.meta['msk']))
+            MongoDBUtils().insertDB(json.loads(json_str))
+        elif str(json_obj['resultCode']) == '-1':
+            print 'result code : -1'
+            print 'response body: ' + str(response.body)
+            print 'uid: ' + str(crypt.uid) + ' tk: ' + str(crypt.tk) + ' sk: ' + str(crypt.sk)
+    except Exception, e:
+        print e.message
+        print traceback.format_exc()
+    # reactor.stop()
+
+
+def parse_failure(error):
+    print "an error has occurred: <%s>" % str(error)
+    # reactor.stop()
+
 
 class Parser(object):
 
@@ -172,7 +192,6 @@ class Parser(object):
 
     def request_to_dict(self, request):
         """Convert Request object to a dict.
-
         If a spider is given, it will try to find out the name of the spider method
         used in the callback and store that as the callback.
         """
@@ -191,10 +210,36 @@ class Parser(object):
         }
         return d
 
-    def _encode_request(self, request):
+    def encode_request(self, request):
         """Encode a request object"""
         obj = self.request_to_dict(request)
         return pickle.dumps(obj, protocol=-1)
+
+    def make_request(self, mobile_number):
+        request = scrapy.Request(
+            url=crypt.get_posturl(),
+            method='POST',
+            body=crypt.get_poststr(mobile_number),
+            headers={
+                'X-CLIENT-PFM': '20',
+                'X-CLIENT-VCODE': '81',
+                'X-CLIENT-PID': '8888888',
+                'Content-Type': 'application/json; charset=utf-8',
+                'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 5.0.2; Redmi Note 2 MIUI/V7.5.5.0.LHMCNDE',
+                'Accept-Encoding': 'gzip',
+            }
+        )
+        request.meta['mobile'] = mobile_number
+        request.meta['msk'] = crypt.sk
+        request.meta['mtk'] = crypt.tk
+        request.meta['muid'] = crypt.uid
+        return request
+
+    def send_request(self, request):
+        settings = get_project_settings()
+        downloader = HTTP11DownloadHandler(settings)
+        self.deferred = downloader.download_request(request)
+        return self.deferred
 
     def fetch_data(self, mobile_number):
         request = scrapy.Request(
@@ -253,15 +298,55 @@ class Parser(object):
             if not item:
                 self.fetch_data(mobile_number)
                 item = MongoDBUtils().readOneFromDB(mobile_number)
-            item['_id'] = ''
+            # item['_id'] = ''
             return_result_array.append(item)
         return return_result_array
 
+class MobileParser(object):
+
+    def parse_mobile(self, mobile_number):
+        self.deferred = defer.Deferred()
+        reactor.callLater(1, self.process_mobile_number(), mobile_number)
+        self.deferred.addCallback(self.fetch_mobile_number)
+        return self.deferred
+
+    def process_mobile_number(self, mobile_number):
+        self.deferred.callback(mobile_number)
+
+    def fetch_mobile_number(self, mobile_number):
+        request = scrapy.Request(
+            url=crypt.get_posturl(),
+            method='POST',
+            body=crypt.get_poststr(mobile_number),
+            headers={
+                'X-CLIENT-PFM': '20',
+                'X-CLIENT-VCODE': '81',
+                'X-CLIENT-PID': '8888888',
+                'Content-Type': 'application/json; charset=utf-8',
+                'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 5.0.2; Redmi Note 2 MIUI/V7.5.5.0.LHMCNDE',
+                'Accept-Encoding': 'gzip',
+            }
+        )
+        request.meta['mobile'] = mobile_number
+        request.meta['msk'] = crypt.sk
+        request.meta['mtk'] = crypt.tk
+        request.meta['muid'] = crypt.uid
+
 if __name__ == '__main__':
+    # parser = Parser()
+    # request = parser.make_request('15809981991')
+    # deferred = parser.send_request(request)
+    # deferred.addCallback(parse_success, request)
+    # deferred.addErrback(parse_failure)
+    #
+    # reactor.run()
+
     print Parser().parse_mobile(sys.argv[1])
-    # print Parser().parse_mobile('15809981999')
-    # print Parser().parse_mobile('15809981997')
-    # print Parser().parse_mobile('15809981998')
+    # print Parser().parse_mobile('15809981911')
+    # print Parser().parse_mobile('15809981912')
+    # print Parser().parse_mobile('15809981913')
+    # print Parser().parse_mobile('15809981914')
+    # print Parser().parse_mobile('15809981915')
     # if len(sys.argv) < 2:
     #     print 'parameter is not null'
     # mobile_number_string = str(sys.argv[1]).strip()
